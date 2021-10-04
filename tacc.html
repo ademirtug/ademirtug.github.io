@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="./js/jquery-3.6.0.min.js"></script>
+    <link href="./css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="slick/slick.css" />
+    <link rel="stylesheet" type="text/css" href="slick/slick-theme.css" />
+    <style>
+        body {
+            padding-top: 70px;
+        }
+
+        .bd-placeholder-img {
+            font-size: 1.125rem;
+            text-anchor: middle;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            user-select: none;
+        }
+
+        @media (min-width: 768px) {
+            .bd-placeholder-img-lg {
+                font-size: 3.5rem;
+            }
+        }
+
+        html, body {
+            overflow-x: hidden; /* Prevent scroll on narrow devices */
+        }
+
+        @media (max-width: 991.98px) {
+            .offcanvas-collapse {
+                position: fixed;
+                top: 95px; /* Height of navbar */
+                bottom: 0;
+                left: 100%;
+                width: 100%;
+                padding-right: 1rem;
+                padding-left: 1rem;
+                overflow-y: auto;
+                visibility: hidden;
+                background-color: gainsboro;
+                transition: transform .3s ease-in-out, visibility .3s ease-in-out;
+            }
+
+                .offcanvas-collapse.open {
+                    visibility: visible;
+                    transform: translateX(-100%);
+                }
+        }
+
+        .nav-scroller {
+            position: relative;
+            z-index: 2;
+            height: 2.75rem;
+            overflow-y: hidden;
+        }
+
+            .nav-scroller .nav {
+                display: flex;
+                flex-wrap: nowrap;
+                padding-bottom: 1rem;
+                margin-top: -1px;
+                overflow-x: auto;
+                color: rgba(255, 255, 255, .75);
+                text-align: center;
+                white-space: nowrap;
+                -webkit-overflow-scrolling: touch;
+            }
+
+        .nav-underline .nav-link {
+            padding-top: .75rem;
+            padding-bottom: .75rem;
+            font-size: .875rem;
+            color: #6c757d;
+        }
+
+            .nav-underline .nav-link:hover {
+                color: #007bff;
+            }
+
+        .nav-underline .active {
+            font-weight: 500;
+            color: #343a40;
+        }
+        /* .navbar-nav li:hover > ul.dropdown-menu {
+        display: block;
+        margin-top:-6px;
+        } */
+        .dropdown-submenu {
+            position: relative;
+        }
+
+            .dropdown-submenu > .dropdown-menu {
+                top: 0;
+                left: 100%;
+                margin-top: -6px;
+            }
+        /* .dropdown-menu > li > a:hover:after {
+        text-decoration: underline;
+        transform: rotate(-90deg);
+        } */
+        .nav-item > a {
+            font-size: large
+        }
+
+        .carousel-inner > .carousel-item > img {
+            max-width: 100%;
+            height: 60vh;
+        }
+
+        .carousel-item {
+            transition: transform 2.6s ease-in-out;
+        }
+
+        .carousel-fade .active.carousel-item-start,
+        .carousel-fade .active.carousel-item-end {
+            transition: opacity 0s 2.6s;
+        }
+
+        body {
+            padding-top: 100px;
+            background-color: rgba(255, 255, 255, .25);
+        }
+
+        .opak {
+            background-color: rgba(245, 245, 245, 0);
+        }
+
+        .card-img-top {
+            width: 100%;
+            height: 30vh;
+            object-fit: contain;
+        }
+
+        .card-body {
+            height: 130px;
+        }
+
+        .card {
+            background-color: rgba(245, 245, 245, 0);
+        }
+
+        .services .slick-slide img {
+            opacity: 0.4;
+            transform: scale(.8);
+            transition: transform .3s cubic-bezier(.4,0,.2,1);
+            filter: grayscale(100%);
+        }
+
+        .services .slick-slide.slick-center img {
+            opacity: 1;
+            transform: scale(1);
+            filter: grayscale(0%);
+        }
+
+        h4 {
+            color: darkgreen;
+        }
+
+
+        /* TAB ACC */
+
+
+
+
+
+        .n-tab-content > .tab-pane {
+            opacity: 1;
+            display: block;
+        }
+
+        .n-tab-content > .tab-pane.active {
+            display: block;
+        }
+        .n-nav-tabs {
+            display: none;
+        }
+        @media (min-width: 768px) {
+            .n-card {
+                border: none;
+            }
+
+            .n-card-header {
+                display: none;
+            }
+
+            .n-tab-pane {
+                display: none;
+            }
+            .n-tab-content > .tab-pane.active .collapse{
+                display: block;
+            }
+
+            .n-nav-tabs {
+                display: flex;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <ul id="tabs" class="nav nav-tabs n-nav-tabs" role="tablist">
+            <li class="nav-item">
+                <a id="tab-A" href="#pane-A" class="nav-link active" data-bs-toggle="tab" role="tab">A</a>
+            </li>
+            <li class="nav-item">
+                <a id="tab-B" href="#pane-B" class="nav-link" data-bs-toggle="tab" role="tab">B</a>
+            </li>
+        </ul>
+        <div id="content" class="tab-content n-tab-content" role="tablist">
+            <div id="pane-A" class="card tab-pane fade show active n-card n-tab-pane" role="tabpanel" aria-labelledby="tab-A">
+                <div class="card-header n-card-header" role="tab" id="heading-A">
+                    <a data-bs-toggle="collapse" href="#collapse-A" data-bs-parent="#content" aria-expanded="true"
+                        aria-controls="collapse-A">
+                        Collapsible Group Item A
+                    </a>
+                </div>
+                <div id="collapse-A" class="collapse" role="tabpanel" aria-labelledby="heading-A">
+                    <div class="card-deck" style="display: flex; flex-direction: row">
+                        <div class="card" style="flex:1">
+                            
+                            <div class="card-body">
+                                <h5 class="card-title">Card title</h5>
+                                <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                            </div>
+                        </div>
+                        <div class="card" style="flex:1">
+                            
+                            <div class="card-body">
+                                <h5 class="card-title">Card title</h5>
+                                <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
+                                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                            </div>
+                        </div>
+                        <div class="card" style="flex:1">
+                            
+                            <div class="card-body">
+                                <h5 class="card-title">Card title</h5>
+                                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
+                                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+            <div id="pane-B" class="card tab-pane show fade n-card" role="tabpanel" aria-labelledby="tab-B">
+                <div class="card-header n-card-header" role="tab" id="heading-B">
+                    <a data-bs-toggle="collapse" href="#collapse-B" data-bs-parent="#content" aria-expanded="false"
+                        aria-controls="collapse-B">
+                        Collapsible Group Item B
+                    </a>
+                </div>
+                <div id="collapse-B" class="collapse" role="tabpanel" aria-labelledby="heading-B">
+                    <div class="card-body">
+                        [Tab content B]
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#newsCarousel').slick({
+                isFinite: true,
+                dots: true,
+                slidesToShow: 3,
+                slidesToScroll: 3,
+                autoplay: true,
+                autoplaySpeed: 7000,
+                speed: 2000,
+                responsive: [
+                    {
+                        breakpoint: 1000,
+                        settings: {
+                            slidesToShow: 2,
+                            slidesToScroll: 2,
+                        }
+                    },
+                    {
+                        breakpoint: 600,
+                        settings: {
+                            centerPadding: '30px',
+                            slidesToShow: 1,
+                            slidesToScroll: 1,
+                        }
+                    }
+                ]
+            });
+            $('#services').slick({
+                centerMode: true,
+                centerPadding: '30px',
+                dots: false,
+                isFinite: false,
+                arrows: false,
+                slidesToShow: 5,
+                autoplay: true,
+                autoplaySpeed: 3000,
+                speed: 2000,
+                responsive: [
+                    {
+                        breakpoint: 768,
+                        settings: {
+                            arrows: false,
+                            centerMode: true,
+                            centerPadding: '30px',
+                            slidesToShow: 4
+                        }
+                    },
+                    {
+                        breakpoint: 480,
+                        settings: {
+                            arrows: false,
+                            centerMode: true,
+                            centerPadding: '30px',
+                            slidesToShow: 2
+                        }
+                    }
+                ]
+            });
+            $('#announcements').slick({
+                vertical: true,
+                isFinite: true,
+                dots: true,
+                arrows: false,
+                slidesToShow: 3,
+                slidesToScroll: 3,
+                autoplay: true,
+                speed: 2000,
+                autoplaySpeed: 10000,
+            });
+        });
+    </script>
+    <script src="./js/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript" src="slick/slick.min.js"></script>
+    <script type="text/javascript">
+        (function () {
+            'use strict'
+            document.querySelector('#navbarSideCollapse').addEventListener('click', function () {
+                document.querySelector('.offcanvas-collapse').classList.toggle('open')
+            })
+        })()
+    </script>
+    <script>
+        $(document).ready(function () {
+            $(document).on("click", function (event) {
+                var $trigger = $(".dropdown");
+                if ($trigger !== event.target && !$trigger.has(event.target).length) {
+                    $(".dropdown-menu").hide();
+                }
+            });
+            $('.dropdown a.nav-link').on("click", function (e) {
+
+                toggle = $(this).next('ul').is(':visible');
+                $(".dropdown-menu").hide();
+
+                if (toggle)
+                    $(this).next('ul').hide();
+                else
+                    $(this).next('ul').show();
+
+                e.stopPropagation();
+                e.preventDefault();
+            });
+            $('.dropdown-submenu a.dropdown-toggle').on("click", function (e) {
+                $(".dropdown-menu ul.dropdown-menu").hide();
+
+                toggle = $(this).next('ul').is(':visible');
+
+                if (toggle)
+                    $(this).next('ul').hide();
+                else
+                    $(this).next('ul').show();
+
+                e.stopPropagation();
+                e.preventDefault();
+            });
+        });
+    </script>
+</body>
+</html>

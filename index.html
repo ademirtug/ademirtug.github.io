@@ -1,0 +1,1115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="./js/jquery-3.6.0.min.js"></script>
+    <link href="./css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="slick/slick.css" />
+    <link rel="stylesheet" type="text/css" href="slick/slick-theme.css" />
+    <script src="https://kit.fontawesome.com/ae44fe78fe.js" crossorigin="anonymous"></script>
+    <style>
+        body {
+            padding-top: 80px;
+        }
+
+        .bd-placeholder-img {
+            font-size: 1.125rem;
+            text-anchor: middle;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            user-select: none;
+        }
+
+        @media (min-width: 768px) {
+            .bd-placeholder-img-lg {
+                font-size: 3.5rem;
+            }
+        }
+
+        html, body {
+            overflow-x: hidden; /* Prevent scroll on narrow devices */
+        }
+
+        @media (max-width: 991.98px) {
+            .offcanvas-collapse {
+                position: fixed;
+                top: 80px; /* Height of navbar */
+                bottom: 0;
+                left: 100%;
+                width: 100%;
+                padding-right: 1rem;
+                padding-left: 1rem;
+                overflow-y: auto;
+                visibility: hidden;
+                background-color: gainsboro;
+                transition: transform .3s ease-in-out, visibility .3s ease-in-out;
+            }
+
+            .offcanvas-collapse.open {
+                visibility: visible;
+                transform: translateX(-100%);
+            }
+
+        }
+
+        .nav-scroller {
+            position: relative;
+            z-index: 2;
+            height: 2.75rem;
+            overflow-y: hidden;
+        }
+
+        .nav-scroller .nav {
+            display: flex;
+            flex-wrap: nowrap;
+            padding-bottom: 1rem;
+            margin-top: -1px;
+            overflow-x: auto;
+            color: rgba(255, 255, 255, .75);
+            text-align: center;
+            white-space: nowrap;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        /* .ddmenu{
+            color:olivedrab
+        } */
+        .nav-underline .nav-link {
+            padding-top: .75rem;
+            padding-bottom: .75rem;
+            font-size: .875rem;
+            color: #6c757d;
+        }
+
+        .nav-underline .nav-link:hover {
+            color: olivedrab;
+        }
+        
+        .nav-underline .active {
+            font-weight: 500;
+            color: #343a40;
+        }
+
+        .dropdown-submenu {
+            position: relative;
+        }
+
+        .dropdown-submenu > .dropdown-menu {
+            top: 0;
+            left: 100%;
+            margin-top: -6px;
+        }
+
+        .nav-item > a {
+            font-size: large
+        }
+
+        .navbar-nav li a:focus,
+        .navbar-nav li a:hover{
+            background-color: olivedrab !important;
+        }
+
+        .carousel-inner > .carousel-item > img {
+            max-width: 100%;
+            height: 60vh;
+            margin: 0 auto;
+            justify-content: center;
+        }
+
+        .carousel-item {
+            background-color: white;
+            transition: transform 2.6s ease-in-out;
+        }
+
+        .carousel-fade .active.carousel-item-start,
+        .carousel-fade .active.carousel-item-end {
+            transition: opacity 1s 2.0s;
+        }
+
+        .card-img-top {
+            width: 100%;
+            height: 30vh;
+            object-fit: contain;
+        }
+
+        .h-card-body {
+            height: 130px;
+        }
+
+        .card {
+            background-color: rgba(0, 0, 0, 0);
+        }
+
+        .services .slick-slide img {
+            opacity: 0.4;
+            transform: scale(.8);
+            transition: transform .3s cubic-bezier(.4,0,.2,1);
+            filter: grayscale(100%);
+        }
+
+        .services .slick-slide.slick-center img {
+            opacity: 1;
+            transform: scale(1);
+            filter: grayscale(0%);
+        }
+
+        h4 {
+            color: olivedrab;
+        }
+        /* TAB ACC */
+
+        .n-tab-content > .tab-pane {
+            opacity: 1;
+            display: block;
+        }
+
+        .n-tab-content > .tab-pane.active {
+            display: block;
+        }
+        .n-card-header {
+            background-color: white;
+        }
+        .n-nav-tabs {
+            display: none;
+        }
+
+        @media (min-width: 768px) {
+            .n-card {
+                border: none;
+            }
+            .n-card-header {
+                display: none;
+                background-color: white;
+            }
+            .n-tab-pane {
+                display: none;
+            }
+            .n-tab-content > .tab-pane.active .collapse {
+                display: block;
+            }
+            .n-tab-content > .tab-pane .collapse {
+                display: none;
+            }
+            .n-nav-tabs {
+                display: flex;
+                margin-bottom: 5px;
+            }
+        }
+
+        /* TACC */
+        .tacc-card{
+            display: flex; 
+            min-width:210px; 
+            max-width: 210px;
+            min-height: 250px;
+        }
+        .tacc-icon{
+            color: olivedrab;
+        }
+        .tacc-card:hover{
+            border: 1px dashed olivedrab;
+        }
+        .nav-pills .nav-link {
+
+            color: black; 
+        }
+        .nav-pills .nav-link.active {
+            background-color: olivedrab !important;
+        }
+        .n-card-header > a {
+            color:olivedrab;
+        }
+
+
+    </style>
+</head>
+<body class="bg-light">
+    <nav class="navbar navbar-expand-lg fixed-top navbar-light bg-light shadow-sm" aria-label="Ana-Menu">
+        <div class="container">
+            <a class="navbar-brand" href="#"><img style="max-width:120px" src="https://www.mapeg.gov.tr/img/logo/1.png"></a>
+            <button class="navbar-toggler p-0 border-0" type="button" id="navbarSideCollapse">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="navbar-collapse offcanvas-collapse" id="navbarOffCanvas">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link ddmenu" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Kurumsal </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <li class="dropdown-submenu">
+                                <a class="dropdown-item dropdown-toggle" href="#">Hakkımızda</a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="#">Tarihçe</a></li>
+                                    <li><a class="dropdown-item" href="#">Misyon ve Vizyon</a></li>
+                                    <li><a class="dropdown-item" href="#">Görev ve Yetkiler</a></li>
+                                    <li><a class="dropdown-item" href="#">Misyon ve Vizyon</a></li>
+                                    <li><a class="dropdown-item" href="#">Kurumsal Mevzuat</a></li>
+                                    <li><a class="dropdown-item" href="#">Kurumsal Kimlik</a></li>
+                                    <li><a class="dropdown-item" href="#">Site Haritası</a></li>
+                                </ul>
+                            </li>
+                            <li class="dropdown-submenu">
+                                <a class="dropdown-item dropdown-toggle" href="#">Yönetim</a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="#">Yöneticilerimiz</a></li>
+                                    <li><a class="dropdown-item" href="#">Genel Müdür Mesajı</a></li>
+                                    <li><a class="dropdown-item" href="#">Organizasyon Şeması</a></li>
+                                </ul>
+                            </li>
+                            <li class="dropdown-submenu">
+                                <a class="dropdown-item dropdown-toggle" href="#">Stratejik Planlar</a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="#">Faaliyet Raporları</a></li>
+                                    <li><a class="dropdown-item" href="#">Performans Raporları</a></li>
+                                    <li><a class="dropdown-item" href="#">Kurumsal Mali Durum ve Beklentiler</a></li>
+                                    <li><a class="dropdown-item" href="#">Temel Mali Raporlar</a></li>
+                                    <li><a class="dropdown-item" href="#">Stratejik Planlar</a></li>
+                                    <li><a class="dropdown-item" href="#">İç Kontol</a></li>
+                                </ul>
+                            </li>
+                            <li class="dropdown-submenu">
+                                <a class="dropdown-item dropdown-toggle" href="#">MAPEG'e Ulaşın</a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="#">İletişim</a></li>
+                                    <li><a class="dropdown-item" href="#">Sıkça Sorulan Sorular</a></li>
+                                    <li><a class="dropdown-item" href="#">MAPEG'e E-posta</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Mevzuat </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <li class="dropdown-submenu">
+                                <a class="dropdown-item dropdown-toggle" href="#">Kanunlar & Yönetmelikler</a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="#">Maden kanunları</a></li>
+                                    <li><a class="dropdown-item" href="#">Petrol Kanunları</a></li>
+                                    <li><a class="dropdown-item" href="#">Maden Yönetmelikleri</a></li>
+                                    <li><a class="dropdown-item" href="#">Petrol Yönetmelikleri</a></li>
+                                </ul>
+                            </li>
+                            <li class="dropdown-submenu">
+                                <a class="dropdown-item dropdown-toggle" href="#">Belgeler & Raporlar</a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="#">Maden Belge ve Raporları</a></li>
+                                    <li><a class="dropdown-item" href="#">Petrol Belge ve Raporları</a></li>
+                                </ul>
+                            </li>
+                            <li class="dropdown-submenu"><a class="dropdown-item " href="#">Resmî Gazete Îlanları</a></li>
+                            <li class="dropdown-submenu"><a class="dropdown-item " href="#">Tebliğler</a></li>
+                            <li class="dropdown-submenu"><a class="dropdown-item " href="#">Genelgeler</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Bilgi Merkezi </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <li class="dropdown-submenu"><a class="dropdown-item " href="#">Haritalar</a></li>
+                            <li class="dropdown-submenu"><a class="dropdown-item " href="#">İstatistikler</a></li>
+                            <li class="dropdown-submenu"><a class="dropdown-item " href="#">UMREK</a></li>
+                            <li class="dropdown-submenu"><a class="dropdown-item " href="#">TUVEK</a></li>
+                            <li class="dropdown-submenu"><a class="dropdown-item " href="#">Mali Duyurular</a></li>
+                            <li class="dropdown-submenu"><a class="dropdown-item " href="#">Ruhsat Sicil Duyurular</a></li>
+                            <li class="dropdown-submenu">
+                                <a class="dropdown-item dropdown-toggle" href="#">İhaleler</a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="#">İhale İlanları</a></li>
+                                    <li><a class="dropdown-item" href="#">İhale Şartları</a></li>
+                                    <li><a class="dropdown-item" href="#">İhale Başvuru Belgeleri</a></li>
+                                    <li><a class="dropdown-item" href="#">İhale Sonucu Takip Ekranı</a></li>
+                                </ul>
+                            </li>
+                            <li class="dropdown-submenu">
+                                <a class="dropdown-item dropdown-toggle" href="#">YTK</a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="#">YTK Duyuruları</a></li>
+                                    <li><a class="dropdown-item" href="#">YTK Başvuru Belgeleri</a></li>
+                                    <li><a class="dropdown-item" href="#">YTK Listesi</a></li>
+                                </ul>
+                            </li>
+                            <li class="dropdown-submenu">
+                                <a class="dropdown-item dropdown-toggle" href="#">Daimi nezâretçi</a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="#">Daimi Nezâretçi Duyuruları</a></li>
+                                    <li><a class="dropdown-item" href="#">Başvuru Belgeleri</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> e-Hizmetler </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <li class="dropdown-submenu"><a class="dropdown-item " href="#">Jeotermal MBYBS Giriş</a></li>
+                            <li class="dropdown-submenu"><a class="dropdown-item " href="#">Kömür Destek Giriş</a></li>
+                            <li class="dropdown-submenu"><a class="dropdown-item " href="#">Daimi Nezaretçi Giriş</a></li>
+                            <li class="dropdown-submenu">
+                                <a class="dropdown-item dropdown-toggle" href="#">Sorgulamalar</a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="#">e-Belge Doğrulama</a></li>
+                                    <li><a class="dropdown-item" href="#">Ruhsat Safhası Doğrulama</a></li>
+                                    <li><a class="dropdown-item" href="#">Nezaretçi Doğrulama</a></li>
+                                </ul>
+                            </li>
+                            <li class="dropdown-submenu">
+                                <a class="dropdown-item dropdown-toggle" href="#">E-Maden Projesi</a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="#">E-Devlet Uygulaması</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> MAPEG Akademi </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <li class="dropdown-submenu"><a class="dropdown-item " href="#">Eğitim Takvimi</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- CAROUSEL -->
+    <div id="mainCarousel" class="carousel slide  carousel-fade " data-bs-ride="carousel">
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#mainCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#mainCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#mainCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        </div>
+        <div class="carousel-inner shadow-sm">
+            <div class="carousel-item active">
+                <img class=".img-fluid  justify-content-center d-flex" style="object-fit: contain; " src="https://www.mapeg.gov.tr/img/anasayfa/anasayfa2509.png">
+            </div>
+            <div class="carousel-item justify-content-center d-flex">
+                <img class=".img-fluid " style="object-fit: contain; " src="https://www.mapeg.gov.tr/img/anasayfa/sozlesmelipersonelalimilani.png">
+            </div>
+            <div class="carousel-item  justify-content-center d-flex">
+                <img class=".img-fluid" style="object-fit: contain;" src="https://www.mapeg.gov.tr/img/anasayfa/sevkfisimobile19.png">
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#mainCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#mainCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+    <br />
+    <!-- HABERLER -->
+    <div class="container " style="background-color: rgba(0,0,0, 0);">
+        <h4 class="ml-2 d-flex justify-content-around">Haberler</h4>
+        <div id="newsCarousel" class="shadow-sm slider autoplay" style="background-color: rgba(245, 245, 245, 0);">
+            <div class="card" style="width: 18rem;">
+                <img class="card-img-top  my-auto mx-auto" src="https://www.mapeg.gov.tr/Haberler/haber%20resim/01092021/haberbasligi.jpg">
+                <div class="card-body  h-card-body">
+                    <p class="card-text"><b>Marble İzmir Fuarı’nın 26’ncısı Gerçekleştirildi.</b></p>
+                    <p class="card-text" style="font-size: small ;color: #6c757d;">26.12.2021</p>
+                </div>
+            </div>
+            <div class="card" style="width: 18rem;">
+                <img class="card-img-top my-auto mx-auto" src="https://www.mapeg.gov.tr/Haberler/haber%20resim/02082021/haberbasligi.jpg">
+                <div class="card-body h-card-body">
+                    <p class="card-text"><b>Bakan DÖNMEZ Vali YERLİKAYA ile bir araya geldi.</b></p>
+                    <p class="card-text" style="font-size: small ;color: #6c757d;">26.12.2021</p>
+                </div>
+            </div>
+            <div class="card" style="width: 18rem; ">
+                <img class="card-img-top my-auto mx-auto" src="https://www.mapeg.gov.tr/Haberler/haber%20resim/28082021/haber_basligi.jpg">
+                <div class="card-body h-card-body">
+                    <p class="card-text"><b>Genel Müdür Sayın Cevat GENÇ 6. Uluslararası Taş Kongresine Katıldı.</b></p>
+                    <p class="card-text" style="font-size: small ;color: #6c757d;">26.12.2021</p>
+                </div>
+            </div>
+            <div class="card " style="width: 18rem;">
+                <img class="card-img-top my-auto mx-auto" src="https://www.mapeg.gov.tr/Haberler/haber%20resim/27082021/haber_basligi.jpeg">
+                <div class="card-body h-card-body">
+                    <p class="card-text"><b>Mâdenciler Yangınlara Müdahale Çalışmalarına Destek Verdi.</b></p>
+                    <p class="card-text" style=" font-size: small ;color: #6c757d;;">26.12.2021</p>
+                </div>
+            </div>
+            <div class="card " style="width: 18rem;">
+                <img class="card-img-top my-0 mx-auto" src="https://www.mapeg.gov.tr/Haberler/haber%20resim/13072021/haberbasligiresim.jpg">
+                <div class="card-body h-card-body">
+                    <p class="card-text"><b>Genel Müdür Sayın Cevat GENÇ Mâden Dünyâsı Programına Konuk Oldu.</b></p>
+                    <p class="card-text" style="font-size: small ;color: #6c757d;;">26.12.2021</p>
+                </div>
+            </div>
+            <div class="card " style="width: 18rem;">
+                <img class="card-img-top mx-auto" src="https://www.mapeg.gov.tr/Haberler/haber%20resim/2804/haber%20ba%C5%9Fl%C4%B1%C4%9F%C4%B1.jpg">
+                <div class="card-body h-card-body">
+                    <p class="card-text"><b>Mâdencilik Sektöründe İş Sağlığı ve Güvenliğinin Geliştirilmesi Projesi Başlatıldı.</b></p>
+                    <p class="card-text" style="font-size: small ;color: #6c757d;;">26.12.2021</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br />
+    <!-- DUYURULAR -->
+    <div class="container">
+        <div>
+            <h4 class="ml-2 d-flex justify-content-around">Duyurular</h4>
+            <div id="announcements" class="slider announcements shadow-sm ">
+                <div class="card border rounded">
+                    <div class="card-body rounded">
+                        <span class="d-flex justify-content-around" style="color: #6c757d;">8 Eylül 2021</span>
+                        <span class="d-flex justify-content-around"><b>198, 212, 213, 214, 215, 216, 217, 218 ve 219. Grup İhale İlanları</b></span>
+                    </div>
+                </div>
+                <div class="card border rounded">
+                    <div class="card-body rounded">
+                        <span class="d-flex justify-content-around" style="color: #6c757d;">3 Eylül 2021 </span>
+                        <span class="d-flex justify-content-around"><b>İlk Müracaat Yoluyla Hak Sağlanan Arama Ruhsat Sahalarının Özel İzin Sahalarıyla Kesişmesi Durumunda Yapılacak İşlemler Hakkında</b></span>
+                    </div>
+                </div>
+                <div class="card border rounded">
+                    <div class="card-body rounded">
+                        <span class="d-flex justify-content-around" style="color: #6c757d;">1 Eylül 2021 </span>
+                        <span class="d-flex justify-content-around"><b>ETKB Bağlı, İlgili ve İlişkili Kuruluşlar Taşınmaz Komisyonunca MAPEG Tarafından İşlemlerinin Devam Edilmesi Uygun Bulunan Talepler Listesi (01.09.2021)</b></span>
+                    </div>
+                </div>
+                <div class="card border rounded">
+                    <div class="card-body rounded">
+                        <span class="d-flex justify-content-around" style="color: #6c757d;">17 Ağustos 2021</span>
+                        <span class="d-flex justify-content-around"><b>ETKB Bağlı, İlgili ve İlişkili Kuruluşlar Taşınmaz Komisyonunca MAPEG Tarafından İşlemlerinin Devam Edilmesi Uygun Bulunan Talepler Listesi (17.08.2021)</b></span>
+                    </div>
+                </div>
+                <div class="card border rounded">
+                    <div class="card-body rounded">
+                        <span class="d-flex justify-content-around" style="color: #6c757d;">13 Ağustos 2021</span>
+                        <span class="d-flex justify-content-around"><b>206. İhale Grubu Küçük Alan İhalesi Ertelenmesi Hakkında</b></span>
+                    </div>
+                </div>
+                <div class="card border rounded">
+                    <div class="card-body rounded">
+                        <span class="d-flex justify-content-around" style="color: #6c757d;">10 Ağustos 2021 </span>
+                        <span class="d-flex justify-content-around"><b>ETKB Bağlı, İlgili ve İlişkili Kuruluşlar Taşınmaz Komisyonunca MAPEG Tarafından İşlemlerinin Devam Edilmesi Uygun Bulunan Talepler Listesi (10.08.2021)</b></span>
+                    </div>
+                </div>
+                <div class="card border rounded">
+                    <div class="card-body rounded">
+                        <span class="d-flex justify-content-around" style="color: #6c757d;">9 Ağustos 2021 </span>
+                        <span class="d-flex justify-content-around"><b>Sözleşmeli Bilişim Personeli Alım İlanı</b></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br />
+    <!-- TAB ACCORDION MENU -->
+    <div class="container">
+        <div class="shadow-sm border">
+            <ul id="tabs" class="nav nav-pills green n-nav-tabs" role="tablist" >
+                <li class="nav-item">
+                    <a id="tab-A" href="#pane-A" class="nav-link active" data-bs-toggle="tab" role="tab">Kurumsal</a>
+                </li>
+                <li class="nav-item">
+                    <a id="tab-B" href="#pane-B" class="nav-link " data-bs-toggle="tab" role="tab">Mevzuat</a>
+                </li>
+                <li class="nav-item">
+                    <a id="tab-C" href="#pane-C" class="nav-link " data-bs-toggle="tab" role="tab">Petrol</a>
+                </li>
+                <li class="nav-item">
+                    <a id="tab-D" href="#pane-D" class="nav-link" data-bs-toggle="tab" role="tab">e-Hizmetler</a>
+                </li>
+                <li class="nav-item">
+                    <a id="tab-E" href="#pane-E" class="nav-link" data-bs-toggle="tab" role="tab">MAPEG Akademi</a>
+                </li>
+                <li class="nav-item">
+                    <a id="tab-F" href="#pane-F" class="nav-link" data-bs-toggle="tab" role="tab">Bilgi Merkezi</a>
+                </li>
+                <li class="nav-item">
+                    <a id="tab-G" href="#pane-G" class="nav-link" data-bs-toggle="tab" role="tab">Dergilerimiz</a>
+                </li>
+                <li class="nav-item">
+                    <a id="tab-H" href="#pane-H" class="nav-link" data-bs-toggle="tab" role="tab">Yatırım Rehberi</a>
+                </li>
+                <li class="nav-item">
+                    <a id="tab-J" href="#pane-J" class="nav-link" data-bs-toggle="tab"  role="tab">Bilgi Bankası</a>
+                </li>
+
+            </ul>
+            
+            <div id="content" class="tab-content n-tab-content" role="tablist" style="border-top:5px solid olivedrab;">
+                <!-- <div class="container-fluid" style="background-color:olivedrab; margin:5px; min-height: 3px; width: fit-content"></div> -->
+                <div id="pane-A" class="card tab-pane fade show active n-card n-tab-pane"  role="tabpanel" aria-labelledby="tab-A">
+                    <div class="card-header n-card-header" role="tab" id="heading-A">
+                        <a data-bs-toggle="collapse" href="#collapse-A" aria-expanded="true" aria-controls="collapse-A">
+                            Kurumsal
+                        </a>
+                    </div>
+                    <div id="collapse-A" class="collapse" role="tabpanel" aria-labelledby="heading-A">
+                        <div class=" d-flex flex-row flex-wrap justify-content-between">
+                            <div class="card tacc-card" >
+                                <div class="card-body d-flex flex-column">
+                                    <i class="fas fa-comment-dots fa-3x mx-auto my-auto  tacc-icon "></i>
+                                    <p class="mx-auto ">Genel Müdür Mesajı</p>
+                                </div>
+                            </div>
+                            <div class="card tacc-card" >
+                                <div class="card-body d-flex flex-column">
+                                    <i class="fas fa-sitemap fa-3x mx-auto my-auto tacc-icon "></i><br />
+                                    <p class=" mx-auto">Organizasyon Şeması</p>
+                                </div>
+                            </div>
+                            <div class="card tacc-card" >
+                                <div class="card-body d-flex flex-column">
+                                    <i class="fas fa-paper-plane fa-3x mx-auto my-auto tacc-icon "></i><br />
+                                    <p class=" mx-auto">Stratejik Planlar</p>
+                                </div>
+                            </div>
+                            <div class="card tacc-card" >
+                                <div class="card-body d-flex flex-column">
+                                    <i class="fas fa-file-medical-alt fa-3x mx-auto my-auto tacc-icon "></i><br />
+                                    <p class="mx-auto">Belgeler & Raporlar</p>
+                                </div>
+                            </div>
+                            <div class="card tacc-card" >
+                                <div class="card-body d-flex flex-column">
+                                    <i class="fas fa-camera fa-3x mx-auto my-auto tacc-icon "></i><br />
+                                    <p class="mx-auto">Sıkça Sorulan Sorular</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="pane-B" class="card tab-pane show fade n-card" role="tabpanel" aria-labelledby="tab-B">
+                    <div class="card-header n-card-header" role="tab" id="heading-B">
+                        <a data-bs-toggle="collapse" href="#collapse-B" aria-expanded="false" aria-controls="collapse-B">
+                            Mevzuat
+                        </a>
+                    </div>
+                    <div id="collapse-B" class="collapse" role="tabpanel" aria-labelledby="heading-B">
+                        <div class=" d-flex flex-row flex-wrap justify-content-between">
+                            <div class="card tacc-card" >
+                                <div class="card-body d-flex flex-column">
+                                    <i class="fas fa-balance-scale fa-3x mx-auto my-auto tacc-icon "></i><br />
+                                    <p class="mx-auto">Kanunlar</p>
+                                </div>
+                            </div>
+                            <div class="card tacc-card" >
+                                <div class="card-body d-flex flex-column">
+                                    <i class="fas fa-gavel fa-3x mx-auto my-auto tacc-icon "></i><br />
+                                    <p class=" mx-auto">Yönetmelikler</p>
+                                </div>
+                            </div>
+                            <div class="card tacc-card" >
+                                <div class="card-body d-flex flex-column">
+                                    <i class="fas fa-envelope-open-text fa-3x mx-auto my-auto tacc-icon "></i><br />
+                                    <p class=" mx-auto">Tebliğler</p>
+                                </div>
+                            </div>
+                            <div class="card tacc-card" >
+                                <div class="card-body d-flex flex-column">
+                                    <i class="fas fa-info fa-3x mx-auto my-auto tacc-icon "></i><br />
+                                    <p class="mx-auto">Mevzuat Bilgi Sistemi</p>
+                                </div>
+                            </div>
+                            <div class="card tacc-card" >
+                                <div class="card-body d-flex flex-column">
+                                    <i class="fas fa-bullhorn fa-3x mx-auto my-auto tacc-icon "></i><br />
+                                    <p class="mx-auto">Resmi Gazete İlanları</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="pane-C" class="card tab-pane show fade n-card" role="tabpanel" aria-labelledby="tab-C">
+                    <div class="card-header n-card-header" role="tab" id="heading-C">
+                        <a data-bs-toggle="collapse" href="#collapse-C" data-bs-parent="#content" aria-expanded="false"
+                        aria-controls="collapse-C">
+                            Petrol
+                        </a>
+                    </div>
+                    <div id="collapse-C" class="collapse" role="tabpanel" aria-labelledby="heading-C">
+                        <div class=" d-flex flex-row flex-wrap justify-content-between">
+                            <div class="card tacc-card" >
+                                <div class="card-body d-flex flex-column">
+                                    <i class="fas fa-list fa-3x mx-auto my-auto tacc-icon "></i><br />
+                                    <p class="mx-auto">Petrol Arama Ruhsatları<br/> Müracat Listesi</p>
+                                </div>
+                            </div>
+                            <div class="card tacc-card" >
+                                <div class="card-body d-flex flex-column">
+                                    <i class="fas  fa-balance-scale fa-3x mx-auto my-auto tacc-icon "></i><br />
+                                    <p class=" mx-auto">Petrol Kanunları</p>
+                                </div>
+                            </div>
+                            <div class="card tacc-card" >
+                                <div class="card-body d-flex flex-column">
+                                    <i class="fas fa-gavel fa-3x mx-auto my-auto tacc-icon "></i><br />
+                                    <p class=" mx-auto">Petrol Yönetmelikleri</p>
+                                </div>
+                            </div>
+                            <div class="card tacc-card" >
+                                <div class="card-body d-flex flex-column">
+                                    <i class="fas fa-file-medical-alt fa-3x mx-auto my-auto tacc-icon "></i><br />
+                                    <p class="mx-auto">Petrol Belge ve Raporları</p>
+                                </div>
+                            </div>
+                            <div class="card tacc-card" >
+                                <div class="card-body d-flex flex-column">
+                                    <i class="fas fa-bullhorn fa-3x mx-auto my-auto tacc-icon "></i><br />
+                                    <p class="mx-auto">Resmi Gazete İlanları</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="pane-D" class="card tab-pane show fade n-card" role="tabpanel" aria-labelledby="tab-D">
+                    <div class="card-header n-card-header" role="tab" id="heading-D">
+                        <a data-bs-toggle="collapse" href="#collapse-D" data-bs-parent="#content" aria-expanded="false"
+                        aria-controls="collapse-D">
+                            e-Hizmetler
+                        </a>
+                    </div>
+                    <div id="collapse-D" class="collapse" role="tabpanel" aria-labelledby="heading-D">
+                        <div class=" d-flex flex-row flex-wrap justify-content-between">
+                            <div class="card tacc-card" >
+                                <div class="card-body d-flex flex-column">
+                                    <i class="fas fa-burn fa-3x mx-auto my-auto tacc-icon "></i><br />
+                                    <p class="mx-auto">Jeotermal MBYBS Giriş</p>
+                                </div>
+                            </div>
+                            <div class="card tacc-card" >
+                                <div class="card-body d-flex flex-column">
+                                    <i class="fas fa-sitemap fa-3x mx-auto my-auto tacc-icon "></i><br />
+                                    <p class=" mx-auto">Organizasyon Şeması</p>
+                                </div>
+                            </div>
+                            <div class="card tacc-card" >
+                                <div class="card-body d-flex flex-column">
+                                    <i class="fas fa-paper-plane fa-3x mx-auto my-auto tacc-icon "></i><br />
+                                    <p class=" mx-auto">Stratejik Planlar</p>
+                                </div>
+                            </div>
+                            <div class="card tacc-card" >
+                                <div class="card-body d-flex flex-column">
+                                    <i class="fas fa-file-medical-alt fa-3x mx-auto my-auto tacc-icon "></i><br />
+                                    <p class="mx-auto">Belgeler & Raporlar</p>
+                                </div>
+                            </div>
+                            <div class="card tacc-card" >
+                                <div class="card-body d-flex flex-column">
+                                    <i class="fas fa-camera fa-3x mx-auto my-auto tacc-icon "></i><br />
+                                    <p class="mx-auto">Sıkça Sorulan Sorular</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="pane-E" class="card tab-pane show fade n-card" role="tabpanel" aria-labelledby="tab-E">
+                    <div class="card-header n-card-header" role="tab" id="heading-E">
+                        <a data-bs-toggle="collapse" href="#collapse-E" data-bs-parent="#content" aria-expanded="false"
+                        aria-controls="collapse-E">
+                            MAPEG Akademi
+                        </a>
+                    </div>
+                    <div id="collapse-E" class="collapse" role="tabpanel" aria-labelledby="heading-E">
+                        <div class=" d-flex flex-row flex-wrap justify-content-between">
+                            <div class="card tacc-card" >
+                                <div class="card-body d-flex flex-column">
+                                    <i class="fas fa-comment-dots fa-3x mx-auto my-auto tacc-icon "></i><br />
+                                    <p class="mx-auto">Genel Müdür Mesajı</p>
+                                </div>
+                            </div>
+                            <div class="card tacc-card" >
+                                <div class="card-body d-flex flex-column">
+                                    <i class="fas fa-sitemap fa-3x mx-auto my-auto tacc-icon "></i><br />
+                                    <p class=" mx-auto">Organizasyon Şeması</p>
+                                </div>
+                            </div>
+                            <div class="card tacc-card" >
+                                <div class="card-body d-flex flex-column">
+                                    <i class="fas fa-paper-plane fa-3x mx-auto my-auto tacc-icon "></i><br />
+                                    <p class=" mx-auto">Stratejik Planlar</p>
+                                </div>
+                            </div>
+                            <div class="card tacc-card" >
+                                <div class="card-body d-flex flex-column">
+                                    <i class="fas fa-file-medical-alt fa-3x mx-auto my-auto tacc-icon "></i><br />
+                                    <p class="mx-auto">Belgeler & Raporlar</p>
+                                </div>
+                            </div>
+                            <div class="card tacc-card" >
+                                <div class="card-body d-flex flex-column">
+                                    <i class="fas fa-camera fa-3x mx-auto my-auto tacc-icon "></i><br />
+                                    <p class="mx-auto">Sıkça Sorulan Sorular</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="pane-F" class="card tab-pane show fade n-card" role="tabpanel" aria-labelledby="tab-F">
+                    <div class="card-header n-card-header" role="tab" id="heading-F">
+                        <a data-bs-toggle="collapse" href="#collapse-F" data-bs-parent="#content" aria-expanded="false"
+                        aria-controls="collapse-F">
+                            Bilgi Merkezi
+                        </a>
+                    </div>
+                    <div id="collapse-F" class="collapse" role="tabpanel" aria-labelledby="heading-F">
+                        <div class=" d-flex flex-row flex-wrap justify-content-between">
+                            <div class="card tacc-card" >
+                                <div class="card-body d-flex flex-column">
+                                    <i class="fas fa-comment-dots fa-3x mx-auto my-auto tacc-icon "></i><br />
+                                    <p class="mx-auto">Genel Müdür Mesajı</p>
+                                </div>
+                            </div>
+                            <div class="card tacc-card" >
+                                <div class="card-body d-flex flex-column">
+                                    <i class="fas fa-sitemap fa-3x mx-auto my-auto tacc-icon "></i><br />
+                                    <p class=" mx-auto">Organizasyon Şeması</p>
+                                </div>
+                            </div>
+                            <div class="card tacc-card" >
+                                <div class="card-body d-flex flex-column">
+                                    <i class="fas fa-paper-plane fa-3x mx-auto my-auto tacc-icon "></i><br />
+                                    <p class=" mx-auto">Stratejik Planlar</p>
+                                </div>
+                            </div>
+                            <div class="card tacc-card" >
+                                <div class="card-body d-flex flex-column">
+                                    <i class="fas fa-file-medical-alt fa-3x mx-auto my-auto tacc-icon "></i><br />
+                                    <p class="mx-auto">Belgeler & Raporlar</p>
+                                </div>
+                            </div>
+                            <div class="card tacc-card" >
+                                <div class="card-body d-flex flex-column">
+                                    <i class="fas fa-camera fa-3x mx-auto my-auto tacc-icon "></i><br />
+                                    <p class="mx-auto">Sıkça Sorulan Sorular</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="pane-G" class="card tab-pane show fade n-card" role="tabpanel" aria-labelledby="tab-G">
+                    <div class="card-header n-card-header" role="tab" id="heading-G">
+                        <a data-bs-toggle="collapse" href="#collapse-G" data-bs-parent="#content" aria-expanded="false"
+                        aria-controls="collapse-G">
+                            Dergilerimiz
+                        </a>
+                    </div>
+                    <div id="collapse-G" class="collapse" role="tabpanel" aria-labelledby="heading-G">
+                        <div class=" d-flex flex-row flex-wrap justify-content-between">
+                            <div class="card tacc-card" >
+                                <div class="card-body d-flex flex-column">
+                                    <i class="fas fa-comment-dots fa-3x mx-auto my-auto tacc-icon "></i><br />
+                                    <p class="mx-auto">Genel Müdür Mesajı</p>
+                                </div>
+                            </div>
+                            <div class="card tacc-card" >
+                                <div class="card-body d-flex flex-column">
+                                    <i class="fas fa-sitemap fa-3x mx-auto my-auto tacc-icon "></i><br />
+                                    <p class=" mx-auto">Organizasyon Şeması</p>
+                                </div>
+                            </div>
+                            <div class="card tacc-card" >
+                                <div class="card-body d-flex flex-column">
+                                    <i class="fas fa-paper-plane fa-3x mx-auto my-auto tacc-icon "></i><br />
+                                    <p class=" mx-auto">Stratejik Planlar</p>
+                                </div>
+                            </div>
+                            <div class="card tacc-card" >
+                                <div class="card-body d-flex flex-column">
+                                    <i class="fas fa-file-medical-alt fa-3x mx-auto my-auto tacc-icon "></i><br />
+                                    <p class="mx-auto">Belgeler & Raporlar</p>
+                                </div>
+                            </div>
+                            <div class="card tacc-card" >
+                                <div class="card-body d-flex flex-column">
+                                    <i class="fas fa-camera fa-3x mx-auto my-auto tacc-icon "></i><br />
+                                    <p class="mx-auto">Sıkça Sorulan Sorular</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="pane-H" class="card tab-pane show fade n-card" role="tabpanel" aria-labelledby="tab-H">
+                    <div class="card-header n-card-header" role="tab" id="heading-H">
+                        <a data-bs-toggle="collapse" href="#collapse-H" data-bs-parent="#content" aria-expanded="false"
+                        aria-controls="collapse-H">
+                            Yatırım Rehberi
+                        </a>
+                    </div>
+                    <div id="collapse-H" class="collapse" role="tabpanel" aria-labelledby="heading-H">
+                        <div class=" d-flex flex-row flex-wrap justify-content-between">
+                            <div class="card tacc-card" >
+                                <div class="card-body d-flex flex-column">
+                                    <i class="fas fa-comment-dots fa-3x mx-auto my-auto tacc-icon "></i><br />
+                                    <p class="mx-auto">Genel Müdür Mesajı</p>
+                                </div>
+                            </div>
+                            <div class="card tacc-card" >
+                                <div class="card-body d-flex flex-column">
+                                    <i class="fas fa-sitemap fa-3x mx-auto my-auto tacc-icon "></i><br />
+                                    <p class=" mx-auto">Organizasyon Şeması</p>
+                                </div>
+                            </div>
+                            <div class="card tacc-card" >
+                                <div class="card-body d-flex flex-column">
+                                    <i class="fas fa-paper-plane fa-3x mx-auto my-auto tacc-icon "></i><br />
+                                    <p class=" mx-auto">Stratejik Planlar</p>
+                                </div>
+                            </div>
+                            <div class="card tacc-card" >
+                                <div class="card-body d-flex flex-column">
+                                    <i class="fas fa-file-medical-alt fa-3x mx-auto my-auto tacc-icon "></i><br />
+                                    <p class="mx-auto">Belgeler & Raporlar</p>
+                                </div>
+                            </div>
+                            <div class="card tacc-card" >
+                                <div class="card-body d-flex flex-column">
+                                    <i class="fas fa-camera fa-3x mx-auto my-auto tacc-icon "></i><br />
+                                    <p class="mx-auto">Sıkça Sorulan Sorular</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="pane-J" class="card tab-pane show fade n-card" role="tabpanel" aria-labelledby="tab-J">
+                    <div class="card-header n-card-header" role="tab" id="heading-J">
+                        <a data-bs-toggle="collapse" href="#collapse-J" data-bs-parent="#content" aria-expanded="false"
+                        aria-controls="collapse-J">
+                            Bilgi Bankası
+                        </a>
+                    </div>
+                    <div id="collapse-J" class="collapse" role="tabpanel" aria-labelledby="heading-J">
+                        <div class=" d-flex flex-row flex-wrap justify-content-between">
+                            <div class="card tacc-card" >
+                                <div class="card-body d-flex flex-column">
+                                    <i class="fas fa-comment-dots fa-3x mx-auto my-auto tacc-icon "></i><br />
+                                    <p class="mx-auto">Genel Müdür Mesajı</p>
+                                </div>
+                            </div>
+                            <div class="card tacc-card" >
+                                <div class="card-body d-flex flex-column">
+                                    <i class="fas fa-sitemap fa-3x mx-auto my-auto tacc-icon "></i><br />
+                                    <p class=" mx-auto">Organizasyon Şeması</p>
+                                </div>
+                            </div>
+                            <div class="card tacc-card" >
+                                <div class="card-body d-flex flex-column">
+                                    <i class="fas fa-paper-plane fa-3x mx-auto my-auto tacc-icon "></i><br />
+                                    <p class=" mx-auto">Stratejik Planlar</p>
+                                </div>
+                            </div>
+                            <div class="card tacc-card" >
+                                <div class="card-body d-flex flex-column">
+                                    <i class="fas fa-file-medical-alt fa-3x mx-auto my-auto tacc-icon "></i><br />
+                                    <p class="mx-auto">Belgeler & Raporlar</p>
+                                </div>
+                            </div>
+                            <div class="card tacc-card" >
+                                <div class="card-body d-flex flex-column">
+                                    <i class="fas fa-camera fa-3x mx-auto my-auto tacc-icon "></i><br />
+                                    <p class="mx-auto">Sıkça Sorulan Sorular</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <br />
+    <!-- CO-OP -->
+    <div class="container">
+        <div class="shadow-sm border">
+            <div id="services" class="slider services" >
+                <div><img src="https://mapeg.gov.tr/img/mmo.png"></div>
+                <div><img src="https://mapeg.gov.tr/img/TKI-logo.jpg"></div>
+                <div><img src="https://mapeg.gov.tr/img/umrek_logo.png"></div>
+                <div><img src="https://mapeg.gov.tr/img/mtalogo.jpg"></div>
+                <div><img src="https://mapeg.gov.tr/img/jeo.jpg"></div>
+                <div><img src="https://mapeg.gov.tr/img/cevre.jpg"></div>
+                <div><img src="https://mapeg.gov.tr/img/epdk-logo.png"></div>
+                <div><img src="https://mapeg.gov.tr/img/jeofiz.jpg"></div>
+            </div>
+            <div >
+                <div class="row">
+                    <div class="col-sm my-auto d-flex justify-content-around">
+                        <a style="color:azure;text-decoration: none;" href="https://www.cimer.gov.tr/">
+                            <img style="width: 300px; ;" src="https://www.cimer.gov.tr/images/iletisim-baskanligi-logo.png" />
+                        </a>
+                    </div>
+                    <div class="col-sm my-auto d-flex justify-content-around">
+                        <a style="color:azure;text-decoration: none;" href="http://www.enerji.gov.tr/">
+                            <img style="width: 300px; ;" src="https://enerji.enerji.gov.tr//Media/Dizin/ETKB/assets/img/logo.png" />
+                        </a>
+                    </div>
+                    <div class="col-sm my-auto d-flex justify-content-around">
+                        <a class="nav-link" href="https://guvenliposta.enerji.gov.tr/">Kurumsal e-Posta</a>
+                    </div>
+                    <div class="col-sm my-auto d-flex justify-content-around">
+                        <div class="col-md-12">
+                            <a href="https://www.mapeg.gov.tr/Iletisim.aspx" target="_blank">
+                                <img src="https://mapeg.gov.tr/img/logo/call-2.jpg" alt="Alo MAPEG" title="Alo MAPEG" />
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br />
+
+    <footer id="footer">
+        <div class="container-fluid " style="border-top:5px solid olivedrab ">
+            <br />
+            <p style="text-align: center; margin: 15px; font-size: small ;color: #6c757d;;">
+                Tüm hakları saklıdır &copy 2017 - 2020 | Maden ve Petrol İşleri Genel Müdürlüğü
+                <br />
+                Bu site Bilgi Teknolojileri Dairesi Başkanlığı tarafından hazırlanmıştır.
+                <br />
+                Maden ve Petrol İşleri Genel Müdürlüğü tarafından sunulan bilgiler kaynak gösterilerek kullanılabilir.
+            </p>
+            <br />
+            <br />
+            <br />
+        </div>
+    </footer>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#newsCarousel').slick({
+                isFinite: true,
+                dots: true,
+                slidesToShow: 3,
+                slidesToScroll: 3,
+                autoplay: true,
+                autoplaySpeed: 7000,
+                speed: 2000,
+                responsive: [
+                    {
+                        breakpoint: 1000,
+                        settings: {
+                            slidesToShow: 2,
+                            slidesToScroll: 2,
+                        }
+                    },
+                    {
+                        breakpoint: 600,
+                        settings: {
+                            centerPadding: '30px',
+                            slidesToShow: 1,
+                            slidesToScroll: 1,
+                        }
+                    }
+                ]
+            });
+            $('#services').slick({
+                centerMode: true,
+                centerPadding: '30px',
+                dots: false,
+                isFinite: false,
+                arrows: false,
+                slidesToShow: 5,
+                autoplay: true,
+                autoplaySpeed: 3000,
+                speed: 2000,
+                responsive: [
+                    {
+                        breakpoint: 768,
+                        settings: {
+                            arrows: false,
+                            centerMode: true,
+                            centerPadding: '30px',
+                            slidesToShow: 4
+                        }
+                    },
+                    {
+                        breakpoint: 480,
+                        settings: {
+                            arrows: false,
+                            centerMode: true,
+                            centerPadding: '30px',
+                            slidesToShow: 2
+                        }
+                    }
+                ]
+            });
+            $('#announcements').slick({
+                vertical: true,
+                isFinite: true,
+                dots: true,
+                arrows: false,
+                slidesToShow: 3,
+                slidesToScroll: 3,
+                autoplay: true,
+                speed: 2000,
+                autoplaySpeed: 10000,
+                responsive: [
+                    {
+                        breakpoint: 768,
+                        settings: {
+                            arrows: false,
+                            centerMode: true,
+                            centerPadding: '30px',
+                            slidesToShow: 2
+                        }
+                    },
+                    {
+                        breakpoint: 480,
+                        settings: {
+                            arrows: false,
+                            centerMode: true,
+                            centerPadding: '30px',
+                            slidesToShow: 1
+                        }
+                    }
+                ]
+            });
+        });
+    </script>
+    <script src="./js/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript" src="slick/slick.min.js"></script>
+    <script type="text/javascript">
+        (function () {
+            'use strict'
+            document.querySelector('#navbarSideCollapse').addEventListener('click', function () {
+                document.querySelector('.offcanvas-collapse').classList.toggle('open')
+            })
+        })()
+    </script>
+    <script>
+        $(document).ready(function () {
+            $(document).on("click", function (event) {
+                var $trigger = $(".dropdown");
+                if ($trigger !== event.target && !$trigger.has(event.target).length) {
+                    $(".dropdown-menu").hide();
+                }
+            });
+            $('.dropdown a.nav-link').on("click", function (e) {
+
+                toggle = $(this).next('ul').is(':visible');
+                $(".dropdown-menu").hide();
+
+                if (toggle)
+                    $(this).next('ul').hide();
+                else
+                    $(this).next('ul').show();
+
+                e.stopPropagation();
+                e.preventDefault();
+            });
+            $('.dropdown-submenu a.dropdown-toggle').on("click", function (e) {
+                $(".dropdown-menu ul.dropdown-menu").hide();
+
+                toggle = $(this).next('ul').is(':visible');
+
+                if (toggle)
+                    $(this).next('ul').hide();
+                else
+                    $(this).next('ul').show();
+
+                e.stopPropagation();
+                e.preventDefault();
+            });
+
+            jQuery('.n-card-header').click( function(e) {
+                jQuery('.collapse').collapse('hide');
+            });
+        });
+    </script>
+</body>
+</html>
